@@ -1,0 +1,8 @@
+.DS_Store
+*.log
+beaverdamchamber.com/
+*.mov
+*.mp4
+*.mp3
+*.m4a
+BeaverDamChamberWeb/wp-content/uploads/**/*.pdf

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="27" height="453" viewBox="0 0 27 453">
+  <g transform="translate(0 453) rotate(-90)">
+    <ellipse cx="13.5" cy="13.5" rx="13.5" ry="13.5" fill="#d44a1e"></ellipse>
+    <line x2="425.5" transform="translate(27.5 13.5)" fill="none" stroke="#767676" stroke-width="1" stroke-dasharray="5"></line>
+  </g>
+</svg>

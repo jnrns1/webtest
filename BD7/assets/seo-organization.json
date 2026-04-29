@@ -1,0 +1,79 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://beaverdamchamber.com/#organization",
+      "name": "Beaver Dam Chamber & Visitor Center",
+      "alternateName": "Beaver Dam Area Chamber of Commerce",
+      "url": "https://beaverdamchamber.com/",
+      "logo": "https://beaverdamchamber.com/wp-content/uploads/2025/01/Logo-revised-12232024.png",
+      "image": "https://beaverdamchamber.com/wp-content/uploads/2026/03/BD-Chamber-Visitor-Center-scaled.jpg",
+      "telephone": "+1-920-887-8879",
+      "email": "hello@beaverdamchamber.com",
+      "foundingDate": "1972",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "127 S. Spring St.",
+        "addressLocality": "Beaver Dam",
+        "addressRegion": "WI",
+        "postalCode": "53916",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 43.4575,
+        "longitude": -88.8373
+      },
+      "areaServed": [
+        { "@type": "City", "name": "Beaver Dam, WI" },
+        { "@type": "AdministrativeArea", "name": "Dodge County, WI" }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/beaverdamchamber",
+        "https://www.instagram.com/beaverdamchamber"
+      ]
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://beaverdamchamber.com/#visitor-center",
+      "name": "Beaver Dam Visitor Center",
+      "description": "Visitor information, maps, lodging recommendations, and member directory for Beaver Dam, Wisconsin.",
+      "image": "https://beaverdamchamber.com/wp-content/uploads/2026/03/BD-Chamber-Visitor-Center-scaled.jpg",
+      "url": "https://beaverdamchamber.com/contact/",
+      "telephone": "+1-920-887-8879",
+      "priceRange": "Free",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "127 S. Spring St.",
+        "addressLocality": "Beaver Dam",
+        "addressRegion": "WI",
+        "postalCode": "53916",
+        "addressCountry": "US"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 43.4575,
+        "longitude": -88.8373
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+          "opens": "08:30",
+          "closes": "16:30"
+        }
+      ],
+      "parentOrganization": { "@id": "https://beaverdamchamber.com/#organization" }
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://beaverdamchamber.com/#website",
+      "url": "https://beaverdamchamber.com/",
+      "name": "Beaver Dam Chamber & Visitor Center",
+      "description": "The community Visitor Center and seat at the table for 400+ Beaver Dam, Wisconsin businesses since 1972.",
+      "publisher": { "@id": "https://beaverdamchamber.com/#organization" },
+      "inLanguage": "en-US"
+    }
+  ]
+}

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A Year in Beaver Dam — Chamber &amp; Visitor Center</title>
+<meta name="description" content="Four seasons in Beaver Dam, Wisconsin. A slow-paced walk through the year — with events, local spots, and a welcome for businesses, from the Chamber & Visitor Center.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,800;1,9..144,400;1,9..144,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1C1C1C;
+    --ink-soft:#4A4A4A;
+    --paper:#FAF6EE;
+
+    --spring-bg:#EAF0D8;
+    --spring-deep:#6B8A3F;
+    --spring-ink:#2C3B1E;
+
+    --summer-bg:#DCE8EE;
+    --summer-deep:#04446E;
+    --summer-ink:#072B44;
+
+    --autumn-bg:#F1D9C4;
+    --autumn-deep:#B2491A;
+    --autumn-ink:#4A1F0A;
+
+    --winter-bg:#E8ECEF;
+    --winter-deep:#355468;
+    --winter-ink:#1F2E3A;
+
+    --biz-bg:#1C1C1C;
+    --biz-deep:#A3BF62;
+    --biz-accent:#D44A1E;
+
+    --maxw:1080px;
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:'Inter',system-ui,sans-serif;
+    font-size:18px;line-height:1.7;
+    color:var(--ink);
+    background:var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:inherit}
+  h1,h2,h3{font-family:'Fraunces',Georgia,serif;font-weight:600;letter-spacing:-.02em;line-height:1.02;margin:0 0 .4em}
+  p{margin:0 0 1em}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:2}
+
+  /* ---------- Progress rail ---------- */
+  .progress{
+    position:fixed;top:50%;left:28px;transform:translateY(-50%);
+    z-index:40;display:flex;flex-direction:column;gap:18px;
+    padding:16px 0;
+  }
+  .progress a{
+    display:flex;align-items:center;gap:10px;text-decoration:none;
+    font-family:'Inter';font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+    color:var(--ink-soft);opacity:.6;transition:opacity .2s ease,color .2s ease;
+    min-height:28px;
+  }
+  .progress a::before{
+    content:'';width:18px;height:1.5px;background:currentColor;transition:width .2s ease;
+  }
+  .progress a:hover,.progress a:focus-visible{opacity:1}
+  .progress a:hover::before{width:32px}
+  @media (max-width:1180px){.progress{display:none}}
+
+  /* ---------- Header ---------- */
+  .site-header{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    display:flex;justify-content:space-between;align-items:center;
+    padding:20px 32px;
+    mix-blend-mode:normal;
+    transition:background .3s ease,box-shadow .3s ease;
+  }
+  .site-header.scrolled{
+    background:rgba(250,246,238,.92);
+    backdrop-filter:blur(10px);
+    box-shadow:0 1px 0 rgba(0,0,0,.06);
+  }
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .brand-logo{
+    background:var(--paper);padding:8px 12px;border-radius:4px;
+    box-shadow:0 4px 16px rgba(0,0,0,.1);
+  }
+  .brand-logo img{height:38px;width:auto;display:block}
+  .brand-text{
+    font-family:'Fraunces';font-style:italic;font-size:.88rem;color:var(--ink);
+    display:none;
+  }
+  @media(min-width:640px){.brand-text{display:block}}
+  .header-right{display:flex;align-items:center;gap:18px}
+  .nav-chip{
+    background:var(--ink);color:var(--paper);padding:11px 20px;
+    border-radius:999px;text-decoration:none;
+    font-family:'Inter';font-size:.82rem;font-weight:500;letter-spacing:.04em;
+    transition:all .2s ease;min-height:42px;display:inline-flex;align-items:center;gap:8px;
+  }
+  .nav-chip:hover{background:var(--biz-accent);color:#fff;transform:translateY(-1px)}
+  .nav-chip .dot{width:6px;height:6px;background:var(--biz-deep);border-radius:50%}
+  .nav-chip:hover .dot{background:#fff}
+  .menu-btn{
+    background:rgba(255,255,255,.7);border:1px solid rgba(0,0,0,.08);padding:10px 16px;border-radius:999px;
+    font-family:'Inter';font-size:.82rem;font-weight:500;cursor:pointer;
+    transition:all .2s ease;min-height:42px;
+    display:none;
+  }
+  @media(min-width:640px){.menu-btn{display:inline-flex;align-items:center;gap:10px}}
+  .menu-btn::after{content:'☰';font-size:1rem}
+  .menu-btn:hover{background:#fff}
+
+  /* ---------- Intro ---------- */
+  .intro{
+    min-height:96vh;display:flex;align-items:center;padding:140px 32px 80px;
+    background:var(--paper);position:relative;overflow:hidden;
+  }
+  .intro::before{
+    content:'';position:absolute;inset:0;pointer-events:none;opacity:.5;
+    background:
+      radial-gradient(circle at 80% 20%, rgba(107,138,63,.18), transparent 45%),
+      radial-gradient(circle at 20% 80%, rgba(178,73,26,.14), transparent 45%);
+  }
+  .intro-inner{max-width:var(--maxw);margin:0 auto;position:relative;z-index:1}
+  .intro .eyebrow{
+    font-family:'Inter';font-size:.78rem;letter-spacing:.3em;text-transform:uppercase;
+    color:var(--ink-soft);margin-bottom:40px;display:flex;align-items:center;gap:14px;
+  }
+  .intro .eyebrow::after{content:'';flex:0 0 64px;height:1px;background:var(--ink-soft);opacity:.3}
+  .intro h1{
+    font-size:clamp(3rem,8.5vw,8rem);font-weight:400;letter-spacing:-.03em;
+    margin-bottom:.2em;
+  }
+  .intro h1 em{font-style:italic;color:var(--biz-accent)}
+  .intro .sub{
+    font-family:'Fraunces';font-style:italic;font-size:clamp(1.15rem,1.8vw,1.5rem);
+    color:var(--ink-soft);max-width:620px;line-height:1.5;margin-bottom:48px;
+  }
+  .intro-meta{
+    display:flex;gap:48px;flex-wrap:wrap;padding:28px 0;
+    border-top:1px solid rgba(0,0,0,.12);border-bottom:1px solid rgba(0,0,0,.12);
+    font-family:'Inter';font-size:.82rem;color:var(--ink-soft);
+  }
+  .intro-meta div strong{display:block;font-family:'Fraunces';font-weight:600;color:var(--ink);font-size:1.4rem;letter-spacing:-.01em;margin-bottom:2px}
+  .intro-cta{margin-top:56px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .intro-cta .scroll-hint{
+    font-family:'Inter';font-size:.78rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);
+    display:inline-flex;align-items:center;gap:14px;
+  }
+  .intro-cta .scroll-hint::after{
+    content:'';display:inline-block;width:40px;height:1px;background:var(--ink-soft);position:relative;
+    animation:line-pulse 2.2s ease-in-out infinite;
+  }
+  @keyframes line-pulse{0%,100%{opacity:.3;transform:scaleX(.7);transform-origin:left}50%{opacity:1;transform:scaleX(1);transform-origin:left}}
+  @media (prefers-reduced-motion:reduce){.intro-cta .scroll-hint::after{animation:none}}
+
+  /* ---------- Season chapters ---------- */
+  .season{
+    position:relative;padding:140px 32px;min-height:100vh;
+    display:flex;align-items:center;
+    overflow:hidden;
+  }
+  .season::after{
+    content:'';position:absolute;left:0;right:0;bottom:0;height:160px;
+    background:linear-gradient(180deg,transparent 0%,var(--paper) 100%);pointer-events:none;opacity:.95;
+  }
+  .season-inner{
+    max-width:var(--maxw);margin:0 auto;width:100%;
+    display:grid;grid-template-columns:1fr 1fr;gap:72px;align-items:center;position:relative;z-index:2;
+  }
+  .season-text .chapter-label{
+    display:inline-flex;align-items:baseline;gap:14px;
+    font-family:'Inter';font-size:.76rem;letter-spacing:.3em;text-transform:uppercase;
+    margin-bottom:30px;
+  }
+  .chapter-label .num{
+    font-family:'Fraunces';font-style:italic;font-size:2.8rem;line-height:.8;font-weight:400;letter-spacing:-.02em;
+  }
+  .season h2{
+    font-size:clamp(2.8rem,6vw,5rem);font-weight:600;letter-spacing:-.025em;
+    margin-bottom:.3em;
+  }
+  .season h2 em{font-style:italic;font-weight:400}
+  .season-lede{
+    font-family:'Fraunces';font-style:italic;font-size:clamp(1.1rem,1.5vw,1.35rem);
+    line-height:1.55;margin-bottom:32px;max-width:500px;
+  }
+  .season-body{color:var(--ink-soft);max-width:500px;margin-bottom:40px;font-size:.98rem}
+  .season-highlights{
+    display:flex;flex-direction:column;gap:2px;border-top:1px solid currentColor;
+    font-family:'Inter';
+  }
+  .season-highlights a{
+    display:flex;align-items:center;justify-content:space-between;gap:16px;
+    padding:18px 0;border-bottom:1px solid currentColor;text-decoration:none;
+    transition:padding .2s ease;
+  }
+  .season-highlights a:hover{padding-left:12px}
+  .season-highlights .title{font-family:'Fraunces';font-size:1.15rem;font-weight:500}
+  .season-highlights .meta{
+    font-family:'Inter';font-size:.76rem;letter-spacing:.18em;text-transform:uppercase;opacity:.7;
+  }
+  .season-highlights .arrow{font-family:'Fraunces';font-style:italic;opacity:.7;transition:transform .2s ease,opacity .2s ease}
+  .season-highlights a:hover .arrow{transform:translateX(4px);opacity:1}
+  .season-photo{
+    position:relative;aspect-ratio:4/5;overflow:hidden;border-radius:4px;
+    box-shadow:0 40px 80px rgba(0,0,0,.22);
+  }
+  .season-photo img{width:100%;height:100%;object-fit:cover;transition:transform 1.2s ease}
+  .season-photo:hover img{transform:scale(1.04)}
+  .season-photo .tag{
+    position:absolute;top:24px;left:24px;
+    background:rgba(255,255,255,.9);backdrop-filter:blur(6px);
+    padding:8px 14px;border-radius:999px;
+    font-family:'Inter';font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);
+  }
+
+  /* chapter accents */
+  .season-spring{background:var(--spring-bg);color:var(--spring-ink)}
+  .season-spring .chapter-label{color:var(--spring-deep)}
+  .season-spring .season-highlights{border-color:rgba(107,138,63,.35)}
+  .season-spring .season-highlights a{border-color:rgba(107,138,63,.35)}
+  .season-spring .season-body{color:rgba(44,59,30,.78)}
+
+  .season-summer{background:var(--summer-bg);color:var(--summer-ink)}
+  .season-summer .chapter-label{color:var(--summer-deep)}
+  .season-summer .season-highlights{border-color:rgba(4,68,110,.3)}
+  .season-summer .season-highlights a{border-color:rgba(4,68,110,.3)}
+  .season-summer .season-body{color:rgba(7,43,68,.78)}
+
+  .season-autumn{background:var(--autumn-bg);color:var(--autumn-ink)}
+  .season-autumn .chapter-label{color:var(--autumn-deep)}
+  .season-autumn .season-highlights{border-color:rgba(178,73,26,.3)}
+  .season-autumn .season-highlights a{border-color:rgba(178,73,26,.3)}
+  .season-autumn .season-body{color:rgba(74,31,10,.78)}
+
+  .season-winter{background:var(--winter-bg);color:var(--winter-ink)}
+  .season-winter .chapter-label{color:var(--winter-deep)}
+  .season-winter .season-highlights{border-color:rgba(53,84,104,.3)}
+  .season-winter .season-highlights a{border-color:rgba(53,84,104,.3)}
+  .season-winter .season-body{color:rgba(31,46,58,.78)}
+
+  /* alternate photo side for rhythm */
+  .season:nth-of-type(2n) .season-inner{direction:rtl}
+  .season:nth-of-type(2n) .season-inner>*{direction:ltr}
+
+  /* ---------- Between-chapter spreads ---------- */
+  .pull-quote{
+    padding:120px 32px;text-align:center;background:var(--paper);position:relative;
+  }
+  .pull-quote blockquote{
+    max-width:820px;margin:0 auto;
+    font-family:'Fraunces';font-style:italic;font-weight:400;
+    font-size:clamp(1.5rem,3.5vw,2.6rem);line-height:1.25;letter-spacing:-.01em;color:var(--ink);
+  }
+  .pull-quote blockquote::before{
+    content:'“';display:block;font-size:4rem;line-height:.4;color:var(--biz-accent);margin-bottom:24px;
+  }
+  .pull-quote cite{
+    display:block;margin-top:32px;
+    font-family:'Inter';font-style:normal;font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;color:var(--ink-soft);
+  }
+
+  /* ---------- Business section ---------- */
+  .for-biz{
+    background:var(--biz-bg);color:var(--paper);padding:140px 32px;position:relative;overflow:hidden;
+  }
+  .for-biz::before{
+    content:'';position:absolute;top:-40px;left:0;right:0;height:120px;
+    background:linear-gradient(180deg,var(--paper) 0%,transparent 100%);opacity:1;pointer-events:none;
+  }
+  .biz-inner{max-width:var(--maxw);margin:0 auto;position:relative;z-index:2}
+  .biz-head{
+    display:grid;grid-template-columns:auto 1fr;gap:40px;align-items:end;margin-bottom:72px;
+    padding-bottom:40px;border-bottom:1px solid rgba(250,246,238,.2);
+  }
+  .biz-head .chapter-label{color:var(--biz-deep);display:flex;align-items:baseline;gap:14px;font-family:'Inter';font-size:.76rem;letter-spacing:.3em;text-transform:uppercase}
+  .biz-head .chapter-label .num{font-family:'Fraunces';font-style:italic;font-size:2.8rem;line-height:.8;font-weight:400;letter-spacing:-.02em}
+  .biz-head h2{font-size:clamp(2.4rem,5vw,4rem);font-weight:600;color:var(--paper);margin:0;text-align:right}
+  .biz-head h2 em{font-style:italic;font-weight:400;color:var(--biz-deep)}
+
+  .biz-intro{
+    display:grid;grid-template-columns:1fr 1.2fr;gap:64px;margin-bottom:72px;align-items:start;
+  }
+  .biz-intro p{
+    font-family:'Fraunces';font-style:italic;font-size:1.3rem;line-height:1.5;color:var(--paper);
+  }
+  .biz-intro .body{font-family:'Inter';font-style:normal;font-size:1rem;color:rgba(250,246,238,.75);line-height:1.7}
+
+  .biz-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
+    background:rgba(250,246,238,.15);
+  }
+  .biz-card{
+    background:var(--biz-bg);padding:40px 32px;text-decoration:none;color:var(--paper);
+    transition:background .3s ease;display:flex;flex-direction:column;min-height:260px;
+  }
+  .biz-card:hover{background:rgba(250,246,238,.04)}
+  .biz-card .step{
+    font-family:'Fraunces';font-style:italic;font-size:.85rem;color:var(--biz-deep);margin-bottom:14px;
+  }
+  .biz-card h3{font-size:1.5rem;font-weight:600;margin-bottom:.4em;color:var(--paper)}
+  .biz-card p{color:rgba(250,246,238,.72);font-size:.92rem;flex-grow:1}
+  .biz-card .arrow{
+    font-family:'Inter';font-size:.76rem;letter-spacing:.22em;text-transform:uppercase;color:var(--biz-deep);
+    display:inline-flex;align-items:center;gap:10px;margin-top:16px;transition:gap .2s ease;
+  }
+  .biz-card:hover .arrow{gap:16px;color:var(--biz-accent)}
+
+  .biz-bottom{
+    text-align:center;margin-top:64px;padding-top:40px;border-top:1px solid rgba(250,246,238,.2);
+  }
+  .biz-bottom a.huge{
+    display:inline-block;
+    font-family:'Fraunces';font-size:clamp(1.6rem,2.8vw,2.2rem);font-weight:400;font-style:italic;color:var(--paper);
+    text-decoration:none;border-bottom:2px solid var(--biz-deep);padding-bottom:6px;
+    transition:color .2s ease,border-color .2s ease;
+  }
+  .biz-bottom a.huge:hover{color:var(--biz-deep);border-color:var(--biz-accent)}
+  .biz-bottom a.huge em{color:var(--biz-accent);font-style:italic}
+
+  /* ---------- Footer ---------- */
+  footer{
+    background:var(--paper);color:var(--ink);padding:80px 32px 32px;
+  }
+  .foot-inner{max-width:var(--maxw);margin:0 auto}
+  .foot-top{
+    text-align:center;padding-bottom:56px;border-bottom:1px solid rgba(0,0,0,.12);margin-bottom:40px;
+  }
+  .foot-top .logo-wrap{display:inline-block;padding:14px 18px;background:#fff;border-radius:4px;box-shadow:0 6px 20px rgba(0,0,0,.08);margin-bottom:24px}
+  .foot-top .logo-wrap img{height:52px}
+  .foot-top p{
+    font-family:'Fraunces';font-style:italic;color:var(--ink-soft);max-width:520px;margin:0 auto;font-size:1.05rem;
+  }
+  .foot-cols{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:32px;margin-bottom:40px;
+  }
+  .foot-cols h4{
+    font-family:'Inter';font-size:.72rem;letter-spacing:.25em;text-transform:uppercase;color:var(--ink);font-weight:600;margin:0 0 14px;
+  }
+  .foot-cols a{color:var(--ink-soft);text-decoration:none;display:block;padding:5px 0;font-size:.92rem;transition:color .2s ease}
+  .foot-cols a:hover{color:var(--biz-accent)}
+  .foot-bottom{
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-family:'Inter';font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);
+    padding-top:24px;border-top:1px solid rgba(0,0,0,.12);
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width:860px){
+    .season-inner{grid-template-columns:1fr;gap:48px}
+    .season:nth-of-type(2n) .season-inner{direction:ltr}
+    .season{padding:96px 24px;min-height:auto}
+    .season-photo{max-width:440px}
+    .biz-intro{grid-template-columns:1fr;gap:32px}
+    .biz-grid{grid-template-columns:repeat(2,1fr)}
+    .biz-head{grid-template-columns:1fr;gap:16px}
+    .biz-head h2{text-align:left}
+    .foot-cols{grid-template-columns:1fr 1fr}
+    .intro{padding:120px 24px 80px;min-height:auto}
+    .intro-meta{gap:24px}
+    .pull-quote{padding:80px 24px}
+    .for-biz{padding:100px 24px}
+  }
+  @media (max-width:540px){
+    .biz-grid,.foot-cols{grid-template-columns:1fr}
+    .site-header{padding:14px 20px}
+    .header-right{gap:10px}
+    .menu-btn{display:none}
+  }
+
+  a:focus-visible,button:focus-visible,.nav-chip:focus-visible{outline:2px solid var(--biz-accent);outline-offset:3px}
+  @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body id="top">
+
+<nav class="progress" aria-label="Jump to season">
+  <a href="#intro">Start</a>
+  <a href="#spring">Spring</a>
+  <a href="#summer">Summer</a>
+  <a href="#autumn">Autumn</a>
+  <a href="#winter">Winter</a>
+  <a href="#for-business">Business</a>
+</nav>
+
+<header class="site-header" id="siteHeader">
+  <a href="#top" class="brand" aria-label="Beaver Dam Chamber & Visitor Center home">
+    <span class="brand-logo"><img src="../BeaverDamChamberWeb/wp-content/uploads/2025/01/Logo-revised-12232024.png" alt="Beaver Dam Chamber & Visitor Center"></span>
+    <span class="brand-text">A Year in Beaver Dam</span>
+  </a>
+  <div class="header-right">
+    <a class="menu-btn" href="../BeaverDamChamberWeb/find-a-business/index.html">Directory</a>
+    <a class="nav-chip" href="#for-business"><span class="dot"></span>For Business</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== INTRO ===== -->
+  <section class="intro" id="intro">
+    <div class="intro-inner">
+      <div class="eyebrow">A year in a small Wisconsin town</div>
+      <h1>Four seasons. <em>One</em> Beaver Dam.</h1>
+      <p class="sub">A slow walk through the year, as told by the lake, the lights, the farmers' market, and the people who keep the place running. Scroll when you're ready — we're in no hurry.</p>
+      <div class="intro-meta">
+        <div><strong>16,703</strong>Neighbors</div>
+        <div><strong>1841</strong>Founded</div>
+        <div><strong>6,700 ac</strong>Beaver Dam Lake</div>
+        <div><strong>~40</strong>Chamber events a year</div>
+      </div>
+      <div class="intro-cta">
+        <span class="scroll-hint">Begin with Spring</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SPRING ===== -->
+  <section class="season season-spring" id="spring">
+    <div class="season-inner">
+      <div class="season-text">
+        <div class="chapter-label"><span class="num">I.</span> Chapter One · Spring</div>
+        <h2>The thaw, and then <em>everything at once.</em></h2>
+        <p class="season-lede">Ice breaks up on the lake. Garden centers open. The Farmers Market sets its tents up on the square for the first time, and half the town shows up just to say hello.</p>
+        <p class="season-body">Spring in Beaver Dam is a gentle, neighborly affair — sap running, trails muddy, patio chairs coming out of sheds. It is the best time to introduce yourself.</p>
+        <div class="season-highlights">
+          <a href="../BeaverDamChamberWeb/community-events/farmers-market/index.html">
+            <div>
+              <div class="title">Farmers Market opens</div>
+              <div class="meta">Saturdays · on the square</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+          <a href="../BeaverDamChamberWeb/live-in-beaver-dam/index.html">
+            <div>
+              <div class="title">Parks &amp; lakeside trails</div>
+              <div class="meta">A long walk · anytime</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+      <figure class="season-photo">
+        <span class="tag">Spring · The park</span>
+        <img loading="lazy" src="../BeaverDamChamberWeb/wp-content/uploads/2022/03/Home-PAge-Discover-Section_458X389.png" alt="Beaver Dam welcome sign in the park">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== PULL QUOTE ===== -->
+  <section class="pull-quote" aria-hidden="true">
+    <blockquote>
+      The Chamber is your community connection — a one-stop-shop for anyone looking to belong in Beaver Dam.
+      <cite>— The Chamber, since 1927 (roughly)</cite>
+    </blockquote>
+  </section>
+
+  <!-- ===== SUMMER ===== -->
+  <section class="season season-summer" id="summer">
+    <div class="season-inner">
+      <div class="season-text">
+        <div class="chapter-label"><span class="num">II.</span> Chapter Two · Summer</div>
+        <h2>Loud, golden, <em>slightly buttery.</em></h2>
+        <p class="season-lede">By June, the lake is warm enough. By July, fireworks. By August, the whole town smells, pleasantly, of sweet corn. Summer is when Beaver Dam puts on its best show.</p>
+        <p class="season-body">Taste of Wisconsin, the Corn Roast, wine tours, live music downtown — the Chamber calendar more or less writes itself. Show up. Order a little of everything.</p>
+        <div class="season-highlights">
+          <a href="../BeaverDamChamberWeb/taste-of-wisconsin/index.html">
+            <div>
+              <div class="title">Taste of Wisconsin</div>
+              <div class="meta">June 20 · beer, cheese, wine</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+          <a href="../BeaverDamChamberWeb/community-events/corn-roast-event/index.html">
+            <div>
+              <div class="title">The Corn Roast</div>
+              <div class="meta">Late August · a Chamber classic</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+          <a href="../BeaverDamChamberWeb/community-events/wine-tour/index.html">
+            <div>
+              <div class="title">Wine Tour</div>
+              <div class="meta">Summer Saturday · by bus</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+      <figure class="season-photo">
+        <span class="tag">Summer · The Corn Roast</span>
+        <img loading="lazy" src="../BeaverDamChamberWeb/wp-content/uploads/2024/05/Corn-ROast-2022-8-1024x768.jpg" alt="Friends eating corn at the Beaver Dam Corn Roast">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== AUTUMN ===== -->
+  <section class="season season-autumn" id="autumn">
+    <div class="season-inner">
+      <div class="season-text">
+        <div class="chapter-label"><span class="num">III.</span> Chapter Three · Autumn</div>
+        <h2>Sweater weather on <em>the lake.</em></h2>
+        <p class="season-lede">The trees put on one of the best shows in southeastern Wisconsin. Sunset runs long and slow. You can almost hear the town exhale.</p>
+        <p class="season-body">Autumn is pepper festivals and apple stands, Friday-night lights and early dinners, and the season when most visitors go "oh. I could live here." More than a few have.</p>
+        <div class="season-highlights">
+          <a href="../BeaverDamChamberWeb/community-events/beaver-dam-pepper-festival/index.html">
+            <div>
+              <div class="title">Pepper Festival</div>
+              <div class="meta">Autumn · downtown</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+          <a href="../BeaverDamChamberWeb/community-events/art-in-the-park/index.html">
+            <div>
+              <div class="title">Art in the Park</div>
+              <div class="meta">Sunday afternoons</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+          <a href="../BeaverDamChamberWeb/live-in-beaver-dam/index.html">
+            <div>
+              <div class="title">Thinking of moving?</div>
+              <div class="meta">Live in Beaver Dam</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+      <figure class="season-photo">
+        <span class="tag">Autumn · The lake</span>
+        <img loading="lazy" src="../BeaverDamChamberWeb/wp-content/uploads/2022/03/Lisa-Davidson-Sunset-cropped.png" alt="Autumn sunset over Beaver Dam Lake">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== WINTER ===== -->
+  <section class="season season-winter" id="winter">
+    <div class="season-inner">
+      <div class="season-text">
+        <div class="chapter-label"><span class="num">IV.</span> Chapter Four · Winter</div>
+        <h2>Quiet streets, <em>bright windows.</em></h2>
+        <p class="season-lede">Downtown lights up in December. Ice fishermen dot the lake by January. The fish fry lines get a little longer. The town turns in on itself, in the best possible way.</p>
+        <p class="season-body">Come for the holiday parade, stay for the supper club. Winter in Beaver Dam is slower and warmer than it sounds — and the Chamber calendar keeps the lights on all season long.</p>
+        <div class="season-highlights">
+          <a href="../BeaverDamChamberWeb/community-events/holiday-events/index.html">
+            <div>
+              <div class="title">Holiday Lights &amp; Parade</div>
+              <div class="meta">December · downtown</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+          <a href="../BeaverDamChamberWeb/community-events/index.html">
+            <div>
+              <div class="title">The winter calendar</div>
+              <div class="meta">Always something on</div>
+            </div>
+            <span class="arrow">→</span>
+          </a>
+        </div>
+      </div>
+      <figure class="season-photo">
+        <span class="tag">Winter · Downtown</span>
+        <img loading="lazy" src="../BeaverDamChamberWeb/wp-content/uploads/2022/04/BD.Home_.TopPhoto-2.jpg" alt="Downtown Beaver Dam at night">
+      </figure>
+    </div>
+  </section>
+
+  <!-- ===== FOR BUSINESS ===== -->
+  <section class="for-biz" id="for-business">
+    <div class="biz-inner">
+      <div class="biz-head">
+        <div class="chapter-label"><span class="num">V.</span> Chapter Five · For Business</div>
+        <h2>The story keeps going. <em>With you in it.</em></h2>
+      </div>
+      <div class="biz-intro">
+        <p>If you run a shop, a restaurant, a service, a trade — this is where you come in.</p>
+        <p class="body">Every visitor who lands on this page is already looking for something to do, somewhere to eat, someone to hire. The Chamber is the shortest path between them and you. Join us, renew your listing, or come to a breakfast — we'll be glad you did.</p>
+      </div>
+      <div class="biz-grid">
+        <a class="biz-card" href="../BeaverDamChamberWeb/join-now-business/index.html">
+          <div class="step">Step 01</div>
+          <h3>Join the Chamber</h3>
+          <p>New members are always welcome. Get on the map and into the directory that visitors actually use.</p>
+          <span class="arrow">Start →</span>
+        </a>
+        <a class="biz-card" href="../BeaverDamChamberWeb/about-the-chamber/member-benefits/index.html">
+          <div class="step">Step 02</div>
+          <h3>See the benefits</h3>
+          <p>Referrals, marketing, advocacy, programs, and the kind of room full of people who want you to do well.</p>
+          <span class="arrow">What's in it →</span>
+        </a>
+        <a class="biz-card" href="../BeaverDamChamberWeb/member-profile-updates/index.html">
+          <div class="step">Step 03</div>
+          <h3>Already a member</h3>
+          <p>Sign in to manage your listing, update contact info, or renew your membership for the year.</p>
+          <span class="arrow">Member login →</span>
+        </a>
+        <a class="biz-card" href="../BeaverDamChamberWeb/overview-of-programs/index.html">
+          <div class="step">Step 04</div>
+          <h3>Explore programs</h3>
+          <p>Leadership Beaver Dam, internships, breakfasts, mixers, and all the ways the Chamber connects its people.</p>
+          <span class="arrow">Programs →</span>
+        </a>
+      </div>
+      <div class="biz-bottom">
+        <a class="huge" href="../BeaverDamChamberWeb/join-now-business/index.html">Take your place in the <em>Beaver Dam</em> story →</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="foot-inner">
+    <div class="foot-top">
+      <div class="logo-wrap"><img src="../BeaverDamChamberWeb/wp-content/uploads/2025/01/Logo-revised-12232024.png" alt="Beaver Dam Chamber & Visitor Center"></div>
+      <p>The Chamber is your community connection — for visitors, for neighbors, and for every business that calls Beaver Dam home.</p>
+    </div>
+    <div class="foot-cols">
+      <div>
+        <h4>The Year</h4>
+        <a href="#spring">Spring</a>
+        <a href="#summer">Summer</a>
+        <a href="#autumn">Autumn</a>
+        <a href="#winter">Winter</a>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <a href="../BeaverDamChamberWeb/community-events/index.html">Events</a>
+        <a href="../BeaverDamChamberWeb/find-a-business/index.html">Directory</a>
+        <a href="../BeaverDamChamberWeb/downtown/index.html">Downtown</a>
+        <a href="../BeaverDamChamberWeb/live-in-beaver-dam/index.html">Live Here</a>
+      </div>
+      <div>
+        <h4>Chamber</h4>
+        <a href="../BeaverDamChamberWeb/about-the-chamber/index.html">About</a>
+        <a href="../BeaverDamChamberWeb/about-the-chamber/mission-values/index.html">Mission</a>
+        <a href="../BeaverDamChamberWeb/leadership-and-ambassadors/index.html">Leadership</a>
+        <a href="../BeaverDamChamberWeb/contact/index.html">Contact</a>
+      </div>
+      <div>
+        <h4>Business</h4>
+        <a href="../BeaverDamChamberWeb/join-now-business/index.html">Join</a>
+        <a href="../BeaverDamChamberWeb/about-the-chamber/member-benefits/index.html">Benefits</a>
+        <a href="../BeaverDamChamberWeb/member-profile-updates/index.html">Member Login</a>
+        <a href="../BeaverDamChamberWeb/membership-renewal/index.html">Renew</a>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© Beaver Dam Chamber &amp; Visitor Center</span>
+      <span>A year, told in four chapters</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // minimal: add .scrolled to header after 40px
+  (function(){
+    var h=document.getElementById('siteHeader');
+    var on=false;
+    function upd(){
+      var s=window.pageYOffset>40;
+      if(s!==on){on=s;h.classList.toggle('scrolled',s)}
+    }
+    upd();window.addEventListener('scroll',upd,{passive:true});
+  })();
+</script>
+
+</body>
+</html>

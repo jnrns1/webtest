@@ -1,0 +1,583 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Beaver Dam Gazette — From the Chamber &amp; Visitor Center</title>
+<meta name="description" content="Small town, big character. A friendly front page to Beaver Dam, Wisconsin — events, local spots, and an open invite for businesses to join the Chamber.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;0,900;1,400;1,700&family=Roboto:wght@300;400;500;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#04446E;
+    --blue-deep:#022E48;
+    --sage:#A3BF62;
+    --sage-deep:#7E9A43;
+    --orange:#D44A1E;
+    --orange-soft:#E98A68;
+    --paper:#FBF6EA;
+    --paper-alt:#F3EDDC;
+    --ink:#1F2A33;
+    --rule:#1F2A33;
+    --radius:6px;
+    --ease:cubic-bezier(.2,.7,.2,1);
+  }
+  *,*::before,*::after{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:'Roboto',Georgia,serif;
+    font-size:17px;line-height:1.7;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 15% 10%, rgba(163,191,98,.08), transparent 40%),
+      radial-gradient(circle at 85% 80%, rgba(212,74,30,.06), transparent 40%),
+      var(--paper);
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%;display:block}
+  a{color:var(--blue)}
+  a:hover{color:var(--orange)}
+  h1,h2,h3{font-family:'Playfair Display',Georgia,serif;color:var(--blue);margin:0 0 .4em;letter-spacing:-.01em}
+  h1{font-weight:900;line-height:1.02}
+  h2{font-weight:700;line-height:1.1}
+  h3{font-weight:700;font-size:1.3rem}
+  p{margin:0 0 1em}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 28px}
+  .hand{font-family:'Caveat',cursive;color:var(--orange)}
+
+  /* ---------- Masthead ---------- */
+  .masthead{
+    border-bottom:4px double var(--rule);
+    background:var(--paper);
+    position:sticky;top:0;z-index:50;
+  }
+  .masthead::before{
+    content:'';display:block;height:8px;
+    background:repeating-linear-gradient(90deg,var(--rule) 0 6px,transparent 6px 12px);
+    opacity:.35;
+  }
+  .mast-inner{
+    display:grid;grid-template-columns:1fr auto 1fr;align-items:center;
+    padding:16px 28px;max-width:1180px;margin:0 auto;gap:24px;
+  }
+  .mast-left{display:flex;align-items:center;gap:20px}
+  .mast-logo img{height:58px;width:auto}
+  .mast-nav{display:flex;gap:22px;font-size:.9rem}
+  .mast-nav a{color:var(--ink);font-weight:500;text-decoration:none;position:relative}
+  .mast-nav a:hover{color:var(--orange)}
+  .mast-nav a:hover::after{content:'';position:absolute;left:0;right:0;bottom:-4px;height:2px;background:var(--sage)}
+  .mast-center{
+    text-align:center;font-family:'Playfair Display';font-style:italic;
+    color:var(--sage-deep);font-size:.95rem;letter-spacing:.05em;
+  }
+  .mast-center small{display:block;font-size:.7rem;letter-spacing:.3em;text-transform:uppercase;color:var(--ink);font-style:normal;opacity:.55;margin-top:2px}
+  .mast-right{display:flex;justify-content:flex-end;align-items:center;gap:14px}
+  .mast-chip{
+    background:var(--sage);color:#fff;padding:10px 18px;border-radius:999px;
+    text-decoration:none;font-weight:600;font-size:.82rem;letter-spacing:.08em;text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:6px;min-height:40px;
+    transition:all .2s var(--ease);
+  }
+  .mast-chip:hover{background:var(--blue);color:#fff;transform:translateY(-1px)}
+  .mast-chip .arrow{transition:transform .2s var(--ease)}
+  .mast-chip:hover .arrow{transform:translateX(3px)}
+  .nav-toggle{display:none;background:none;border:0;padding:8px;cursor:pointer}
+  .nav-toggle svg{width:28px;height:28px;stroke:var(--blue)}
+
+  /* ---------- Hero ---------- */
+  .hero{padding:72px 28px 56px;max-width:1180px;margin:0 auto;position:relative}
+  .hero-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:56px;align-items:center}
+  .kicker{
+    font-family:'Roboto';font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;
+    color:var(--orange);font-weight:500;margin-bottom:22px;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .kicker::before,.kicker::after{content:'';height:1px;background:var(--orange);width:30px;opacity:.6}
+  .hero h1{font-size:clamp(2.8rem,6vw,5.2rem)}
+  .hero h1 em{font-style:italic;color:var(--orange);font-family:'Playfair Display'}
+  .hero-lede{font-size:1.15rem;max-width:520px;color:var(--ink);margin:18px 0 28px;line-height:1.55}
+  .hero-stats{display:flex;gap:24px;font-size:.85rem;color:var(--ink);opacity:.7;margin-top:30px;flex-wrap:wrap}
+  .hero-stats span{display:flex;align-items:center;gap:8px}
+  .hero-stats span::before{content:'';width:6px;height:6px;background:var(--sage);border-radius:50%;display:inline-block}
+  .hero-photos{position:relative;min-height:480px}
+  .hero-photos .photo-a,.hero-photos .photo-b{
+    position:absolute;border:8px solid #fff;box-shadow:0 18px 40px rgba(4,46,72,.18);
+    background:#fff;
+  }
+  .hero-photos .photo-a{
+    top:0;left:10%;width:72%;aspect-ratio:4/5;
+    transform:rotate(-3deg);
+  }
+  .hero-photos .photo-b{
+    bottom:0;right:0;width:58%;aspect-ratio:5/4;
+    transform:rotate(4deg);z-index:1;
+  }
+  .hero-photos img{width:100%;height:100%;object-fit:cover}
+  .hero-sun{
+    position:absolute;top:40%;right:-4%;width:120px;height:120px;
+    color:var(--orange);opacity:.85;z-index:2;pointer-events:none;
+    animation:slow-spin 40s linear infinite;
+  }
+  @keyframes slow-spin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  @media (prefers-reduced-motion:reduce){.hero-sun{animation:none}}
+
+  /* ---------- Ticker ---------- */
+  .ticker{
+    border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);
+    background:var(--blue);color:var(--paper);
+    padding:18px 0;overflow:hidden;position:relative;
+  }
+  .ticker-track{
+    display:flex;gap:60px;white-space:nowrap;
+    animation:scroll 40s linear infinite;
+    font-family:'Playfair Display';font-style:italic;font-size:1.25rem;letter-spacing:.02em;
+  }
+  .ticker-track span{display:inline-flex;align-items:center;gap:60px}
+  .ticker-track .sep{color:var(--orange-soft);font-style:normal}
+  @keyframes scroll{
+    from{transform:translateX(0)}
+    to{transform:translateX(-50%)}
+  }
+  .ticker:hover .ticker-track{animation-play-state:paused}
+  @media (prefers-reduced-motion:reduce){.ticker-track{animation:none;justify-content:center}}
+
+  /* ---------- Reasons ---------- */
+  .reasons{padding:96px 28px 40px;max-width:1180px;margin:0 auto}
+  .section-title{text-align:center;margin-bottom:64px}
+  .section-title h2{font-size:clamp(2rem,3.5vw,2.8rem)}
+  .section-title p{max-width:560px;margin:0 auto;color:#4d5962}
+  .reason{
+    display:grid;grid-template-columns:auto 1fr 1.1fr;gap:48px;align-items:center;
+    padding:36px 0;border-top:1px solid rgba(31,42,51,.18);
+  }
+  .reason:last-child{border-bottom:1px solid rgba(31,42,51,.18)}
+  .reason-num{
+    font-family:'Playfair Display';font-weight:900;font-style:italic;
+    font-size:clamp(5rem,8vw,7.5rem);color:var(--sage);line-height:.9;
+    min-width:140px;
+  }
+  .reason-body h3{margin-bottom:.3em;font-size:1.6rem}
+  .reason-body p{color:#4d5962;margin:0;max-width:420px}
+  .reason-photo{
+    aspect-ratio:5/4;border-radius:var(--radius);overflow:hidden;
+    box-shadow:0 14px 34px rgba(4,46,72,.12);position:relative;
+  }
+  .reason-photo img{width:100%;height:100%;object-fit:cover;transition:transform .6s var(--ease)}
+  .reason:hover .reason-photo img{transform:scale(1.04)}
+  .reason:nth-child(even){grid-template-columns:1.1fr 1fr auto;direction:rtl}
+  .reason:nth-child(even) > *{direction:ltr}
+
+  /* ---------- Postcards ---------- */
+  .postcards{
+    background:var(--paper-alt);padding:100px 28px;
+    position:relative;
+  }
+  .postcards::before,.postcards::after{
+    content:'';display:block;position:absolute;left:0;right:0;height:14px;
+    background:repeating-linear-gradient(90deg,var(--orange) 0 14px,transparent 14px 28px);
+    opacity:.4;
+  }
+  .postcards::before{top:0}
+  .postcards::after{bottom:0;transform:scaleX(-1)}
+  .postcards-inner{max-width:1180px;margin:0 auto;position:relative}
+  .postcards-head{text-align:center;margin-bottom:64px}
+  .postcards-head .hand{font-size:1.8rem;display:block;margin-bottom:4px}
+  .postcard-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:28px;
+  }
+  .postcard{
+    background:#fff;padding:14px 14px 18px;text-decoration:none;color:inherit;
+    box-shadow:0 14px 30px rgba(4,46,72,.12);
+    display:block;transition:transform .35s var(--ease),box-shadow .35s var(--ease);
+  }
+  .postcard:nth-child(1){transform:rotate(-2.5deg)}
+  .postcard:nth-child(2){transform:rotate(1.5deg)}
+  .postcard:nth-child(3){transform:rotate(-1deg)}
+  .postcard:nth-child(4){transform:rotate(2.5deg)}
+  .postcard:hover{transform:rotate(0) translateY(-6px);box-shadow:0 22px 44px rgba(4,46,72,.2)}
+  .postcard .pic{aspect-ratio:4/3;overflow:hidden;background:var(--paper)}
+  .postcard .pic img{width:100%;height:100%;object-fit:cover}
+  .postcard .cap{
+    font-family:'Caveat',cursive;font-size:1.3rem;color:var(--blue);
+    text-align:center;padding:10px 4px 0;line-height:1.2;
+  }
+  .postcard .sub{text-align:center;font-size:.78rem;letter-spacing:.1em;text-transform:uppercase;color:var(--sage-deep);margin-top:2px}
+
+  /* ---------- Squiggle divider ---------- */
+  .squiggle{display:block;margin:0 auto;color:var(--orange);max-width:180px;padding:32px 0}
+
+  /* ---------- Classified ad / business invite ---------- */
+  .classified{
+    padding:96px 28px 100px;max-width:1180px;margin:0 auto;
+  }
+  .classified-card{
+    background:var(--paper);
+    border:2px solid var(--rule);
+    padding:48px clamp(28px,5vw,64px);
+    position:relative;
+    display:grid;grid-template-columns:1.3fr 1fr;gap:48px;align-items:center;
+  }
+  .classified-card::before{
+    content:'CLASSIFIED';position:absolute;top:-14px;left:32px;
+    background:var(--orange);color:#fff;padding:6px 14px;
+    font-size:.7rem;letter-spacing:.3em;font-weight:700;
+  }
+  .classified-card::after{
+    content:'NO. 42';position:absolute;top:-14px;right:32px;
+    background:var(--paper);color:var(--ink);padding:6px 14px;border:1px solid var(--rule);
+    font-family:'Playfair Display';font-style:italic;font-size:.85rem;
+  }
+  .classified h2{font-size:clamp(1.8rem,3vw,2.4rem);font-style:italic}
+  .classified p.quote{
+    font-family:'Playfair Display';font-style:italic;font-size:1.15rem;line-height:1.55;
+    color:var(--ink);max-width:500px;margin:18px 0 28px;
+  }
+  .classified .hand{font-size:1.35rem;display:block;margin-bottom:8px}
+  .classified-ctas{display:flex;flex-wrap:wrap;gap:14px}
+  .btn{
+    display:inline-flex;align-items:center;gap:6px;min-height:44px;
+    padding:13px 22px;border-radius:999px;text-decoration:none;
+    font-weight:500;font-size:.92rem;letter-spacing:.02em;
+    transition:all .2s var(--ease);cursor:pointer;
+    border:1.5px solid var(--blue);color:var(--blue);background:transparent;
+  }
+  .btn:hover{background:var(--blue);color:#fff}
+  .btn-filled{background:var(--sage);border-color:var(--sage);color:#fff}
+  .btn-filled:hover{background:var(--blue);border-color:var(--blue);color:#fff}
+  .classified-bonus{
+    border-left:1px dashed var(--rule);padding-left:40px;
+  }
+  .bonus-list{list-style:none;padding:0;margin:0}
+  .bonus-list li{
+    display:flex;gap:14px;padding:14px 0;border-bottom:1px dashed rgba(31,42,51,.2);
+    font-size:.95rem;
+  }
+  .bonus-list li:last-child{border-bottom:0}
+  .bonus-list strong{color:var(--blue);font-family:'Playfair Display';font-weight:700;display:block;margin-bottom:2px}
+  .bonus-list a{color:var(--sage-deep);font-weight:500;text-decoration:none;font-size:.85rem}
+  .bonus-list a:hover{color:var(--orange);text-decoration:underline}
+
+  /* ---------- Footer ---------- */
+  .footer{
+    background:var(--blue-deep);color:#d7e3ec;
+    padding:56px 28px 28px;
+  }
+  .footer-inner{max-width:1180px;margin:0 auto}
+  .footer-top{
+    text-align:center;border-bottom:1px solid rgba(255,255,255,.12);padding-bottom:40px;margin-bottom:28px;
+  }
+  .footer-top h3{
+    font-family:'Playfair Display';font-style:italic;color:#fff;font-size:1.6rem;
+    margin-bottom:8px;font-weight:500;
+  }
+  .footer-top p{color:#a8bccb;max-width:500px;margin:0 auto;font-size:.95rem}
+  .footer-cols{
+    display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:36px;
+    padding-bottom:32px;border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .footer-cols h4{
+    font-family:'Roboto';color:#fff;font-size:.75rem;letter-spacing:.22em;
+    text-transform:uppercase;margin:0 0 14px;font-weight:600;
+  }
+  .footer-cols a{color:#d7e3ec;display:block;padding:3px 0;text-decoration:none;font-size:.92rem}
+  .footer-cols a:hover{color:var(--sage)}
+  .footer-logo{background:var(--paper);padding:14px 18px;display:inline-block;margin-bottom:12px;border-radius:4px}
+  .footer-logo img{height:46px}
+  .footer-bottom{
+    padding-top:20px;text-align:center;font-size:.82rem;color:#8aa0b2;
+  }
+
+  /* ---------- Mobile ---------- */
+  @media (max-width:960px){
+    .mast-inner{grid-template-columns:1fr auto;gap:16px}
+    .mast-center{display:none}
+    .mast-nav{display:none}
+    .nav-toggle{display:inline-flex}
+    #nav-check:checked ~ .masthead .mast-nav{
+      display:flex;flex-direction:column;position:absolute;top:100%;left:0;right:0;
+      background:var(--paper);padding:20px 28px;border-bottom:4px double var(--rule);gap:14px;z-index:100;
+    }
+    .hero-grid{grid-template-columns:1fr;gap:40px}
+    .hero-photos{min-height:420px;max-width:440px;margin:0 auto;width:100%}
+    .reason{grid-template-columns:1fr;gap:20px;text-align:left}
+    .reason-num{font-size:4rem;min-width:0}
+    .reason:nth-child(even){direction:ltr;grid-template-columns:1fr}
+    .postcard-grid{grid-template-columns:repeat(2,1fr)}
+    .classified-card{grid-template-columns:1fr;gap:32px;padding-top:64px}
+    .classified-bonus{border-left:0;border-top:1px dashed var(--rule);padding:24px 0 0}
+    .footer-cols{grid-template-columns:1fr 1fr;gap:28px}
+    .reasons,.classified{padding:64px 28px}
+    .postcards{padding:72px 28px}
+  }
+  @media (max-width:540px){
+    .postcard-grid,.footer-cols{grid-template-columns:1fr}
+    .hero{padding:48px 28px 40px}
+  }
+
+  /* ---------- Accessibility ---------- */
+  a:focus-visible,.btn:focus-visible,.mast-chip:focus-visible{outline:3px solid var(--orange);outline-offset:3px}
+</style>
+</head>
+<body id="top">
+
+<input type="checkbox" id="nav-check" hidden>
+
+<header class="masthead">
+  <div class="mast-inner">
+    <div class="mast-left">
+      <a href="#top" class="mast-logo" aria-label="Beaver Dam Chamber & Visitor Center home">
+        <img src="../BeaverDamChamberWeb/wp-content/uploads/2025/01/Logo-revised-12232024.png" alt="Beaver Dam Chamber & Visitor Center">
+      </a>
+      <nav class="mast-nav" aria-label="Primary">
+        <a href="#explore">Explore</a>
+        <a href="#events">Events</a>
+        <a href="#for-business">Members</a>
+        <a href="../BeaverDamChamberWeb/contact/index.html">Hello</a>
+      </nav>
+    </div>
+    <div class="mast-center">
+      The Chamber Gazette
+      <small>Spring 2026 · Est. 1841 · Beaver Dam, WI</small>
+    </div>
+    <div class="mast-right">
+      <a class="mast-chip" href="#for-business">Businesses <span class="arrow">→</span> Join Us</a>
+      <label for="nav-check" class="nav-toggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </label>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <span class="kicker">Greetings from Wisconsin</span>
+        <h1>Small town,<br><em>big character.</em></h1>
+        <p class="hero-lede">Welcome to Beaver Dam — a lakeside city of roughly sixteen thousand neighbors, one stubbornly good downtown, and a Chamber that's been happily introducing folks for decades.</p>
+        <div style="display:flex;gap:14px;flex-wrap:wrap">
+          <a class="btn btn-filled" href="#explore">Start exploring</a>
+          <a class="btn" href="#events">See what's on</a>
+        </div>
+        <div class="hero-stats">
+          <span>Pop. 16,703</span>
+          <span>Est. 1841</span>
+          <span>On Beaver Dam Lake</span>
+        </div>
+      </div>
+      <div class="hero-photos" aria-hidden="true">
+        <div class="photo-a"><img src="../BeaverDamChamberWeb/wp-content/uploads/2022/03/Lisa-Davidson-Sunset-cropped.png" alt=""></div>
+        <div class="photo-b"><img src="../BeaverDamChamberWeb/wp-content/uploads/2022/04/BD.Home_.TopPhoto-285-%C3%97-430-px.jpg" alt=""></div>
+        <svg class="hero-sun" viewBox="0 0 100 100" fill="none" stroke="currentColor" stroke-width="1.2">
+          <circle cx="50" cy="50" r="20"/>
+          <g stroke-linecap="round">
+            <line x1="50" y1="10" x2="50" y2="22"/>
+            <line x1="50" y1="78" x2="50" y2="90"/>
+            <line x1="10" y1="50" x2="22" y2="50"/>
+            <line x1="78" y1="50" x2="90" y2="50"/>
+            <line x1="22" y1="22" x2="30" y2="30"/>
+            <line x1="70" y1="70" x2="78" y2="78"/>
+            <line x1="78" y1="22" x2="70" y2="30"/>
+            <line x1="22" y1="78" x2="30" y2="70"/>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== TICKER ===== -->
+  <section class="ticker" id="events" aria-label="Happening in town">
+    <div class="ticker-track" aria-hidden="true">
+      <span>
+        Taste of Wisconsin <span class="sep">✦</span>
+        Farmers Market <span class="sep">✦</span>
+        Corn Roast <span class="sep">✦</span>
+        Art in the Park <span class="sep">✦</span>
+        Wine Tour <span class="sep">✦</span>
+        Holiday Lights <span class="sep">✦</span>
+        Golf Outing <span class="sep">✦</span>
+        Pepper Festival <span class="sep">✦</span>
+      </span>
+      <span aria-hidden="true">
+        Taste of Wisconsin <span class="sep">✦</span>
+        Farmers Market <span class="sep">✦</span>
+        Corn Roast <span class="sep">✦</span>
+        Art in the Park <span class="sep">✦</span>
+        Wine Tour <span class="sep">✦</span>
+        Holiday Lights <span class="sep">✦</span>
+        Golf Outing <span class="sep">✦</span>
+        Pepper Festival <span class="sep">✦</span>
+      </span>
+    </div>
+  </section>
+
+  <!-- ===== THREE REASONS ===== -->
+  <section class="reasons" id="explore">
+    <div class="section-title">
+      <span class="hand" style="font-size:1.8rem;display:block">in this issue —</span>
+      <h2>Three good reasons to stop by.</h2>
+      <p>There are more, of course. These just happen to be the ones most folks mention first.</p>
+    </div>
+
+    <article class="reason">
+      <div class="reason-num">01</div>
+      <div class="reason-body">
+        <h3>Eat local, stay a while.</h3>
+        <p>Corn on the cob in August. Cheese and brats all year. A supper-club Old Fashioned that tastes like it should. Our downtown and our chamber members take the kitchen seriously.</p>
+      </div>
+      <div class="reason-photo">
+        <img loading="lazy" src="../BeaverDamChamberWeb/wp-content/uploads/2026/03/Beaver-Dam-Area-Community-Theatre.png" alt="Beaver Dam local spot">
+      </div>
+    </article>
+
+    <article class="reason">
+      <div class="reason-num">02</div>
+      <div class="reason-body">
+        <h3>See the lake do its thing.</h3>
+        <p>Beaver Dam Lake is one of the largest shallow lakes in the region — a whole sky of color at sundown, ice fishermen in winter, and something green and alive the rest of the year.</p>
+      </div>
+      <div class="reason-photo">
+        <img loading="lazy" src="../BeaverDamChamberWeb/wp-content/uploads/2022/03/Lisa-Davidson-Sunset-cropped.png" alt="Sunset over Beaver Dam Lake">
+      </div>
+    </article>
+
+    <article class="reason">
+      <div class="reason-num">03</div>
+      <div class="reason-body">
+        <h3>Show up for something.</h3>
+        <p>A parade. A fireworks show. A Saturday market. A festival named after a pepper, because of course. Something's happening — and nobody minds if you're new.</p>
+      </div>
+      <div class="reason-photo">
+        <img loading="lazy" src="../BeaverDamChamberWeb/wp-content/uploads/2022/03/Home-PAge-Discover-Section-3_458X389.png" alt="Fireworks over Beaver Dam">
+      </div>
+    </article>
+  </section>
+
+  <svg class="squiggle" viewBox="0 0 180 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <path d="M2 10 Q 20 2, 38 10 T 74 10 T 110 10 T 146 10 T 178 10" />
+  </svg>
+
+  <!-- ===== POSTCARDS ===== -->
+  <section class="postcards">
+    <div class="postcards-inner">
+      <div class="postcards-head">
+        <span class="hand">wish you were here —</span>
+        <h2>A few favorite places.</h2>
+      </div>
+      <div class="postcard-grid">
+        <a class="postcard" href="../BeaverDamChamberWeb/community-events/art-in-the-park/index.html">
+          <div class="pic"><img loading="lazy" src="../BeaverDamChamberWeb/wp-content/uploads/2026/03/Art-on-the-Town-Wisconsin-1.png" alt="Art on the Town"></div>
+          <div class="cap">Art on the Town</div>
+          <div class="sub">Downtown</div>
+        </a>
+        <a class="postcard" href="../BeaverDamChamberWeb/find-a-business/index.html">
+          <div class="pic"><img loading="lazy" src="../BeaverDamChamberWeb/wp-content/uploads/2026/03/Beaver-Dam-Area-Community-Theatre.png" alt="Community Theatre"></div>
+          <div class="cap">The Theatre</div>
+          <div class="sub">Since forever</div>
+        </a>
+        <a class="postcard" href="../BeaverDamChamberWeb/live-in-beaver-dam/index.html">
+          <div class="pic"><img loading="lazy" src="../BeaverDamChamberWeb/wp-content/uploads/2022/03/Home-PAge-Discover-Section_458X389.png" alt="Welcome to Beaver Dam park sign"></div>
+          <div class="cap">The Park</div>
+          <div class="sub">Pack a lunch</div>
+        </a>
+        <a class="postcard" href="../BeaverDamChamberWeb/community-events/index.html">
+          <div class="pic"><img loading="lazy" src="../BeaverDamChamberWeb/wp-content/uploads/2022/03/Home-PAge-Discover-Section-3_458X389.png" alt="Fireworks"></div>
+          <div class="cap">The Fourth</div>
+          <div class="sub">See you there</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <svg class="squiggle" viewBox="0 0 180 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true">
+    <path d="M2 10 Q 20 18, 38 10 T 74 10 T 110 10 T 146 10 T 178 10" />
+  </svg>
+
+  <!-- ===== CLASSIFIED / BUSINESS INVITE ===== -->
+  <section class="classified" id="for-business">
+    <div class="classified-card">
+      <div>
+        <span class="hand">a note to local businesses —</span>
+        <h2>Own a shop in Beaver Dam? Come say hi.</h2>
+        <p class="quote">"The Chamber is the quickest way to get your name on this page — and in front of every visitor who lands here."</p>
+        <div class="classified-ctas">
+          <a class="btn btn-filled" href="../BeaverDamChamberWeb/join-now-business/index.html">Join the Chamber</a>
+          <a class="btn" href="../BeaverDamChamberWeb/about-the-chamber/member-benefits/index.html">What we offer</a>
+        </div>
+      </div>
+      <aside class="classified-bonus" aria-label="Member shortcuts">
+        <ul class="bonus-list">
+          <li>
+            <div>
+              <strong>Already a member?</strong>
+              Update your listing, renew, or manage your profile.<br>
+              <a href="../BeaverDamChamberWeb/member-profile-updates/index.html">Member login →</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>Time to renew?</strong>
+              Keep your spot in the directory and stay in the loop.<br>
+              <a href="../BeaverDamChamberWeb/membership-renewal/index.html">Renew membership →</a>
+            </div>
+          </li>
+          <li>
+            <div>
+              <strong>New in town?</strong>
+              Programs, breakfasts, leadership, internships — here's the rundown.<br>
+              <a href="../BeaverDamChamberWeb/overview-of-programs/index.html">Programs &amp; resources →</a>
+            </div>
+          </li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <h3>The Chamber Is Your Community Connection</h3>
+      <p>One-stop-shop for anyone looking to belong in Beaver Dam — visitors, neighbors, and the businesses that make it home.</p>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <div class="footer-logo"><img src="../BeaverDamChamberWeb/wp-content/uploads/2025/01/Logo-revised-12232024.png" alt="Beaver Dam Chamber & Visitor Center"></div>
+        <p style="color:#a8bccb;max-width:300px;font-size:.9rem">127 S. Spring Street · Beaver Dam, WI<br>A warm welcome, on weekdays.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <a href="#explore">Explore</a>
+        <a href="#events">Events</a>
+        <a href="../BeaverDamChamberWeb/find-a-business/index.html">Directory</a>
+        <a href="../BeaverDamChamberWeb/downtown/index.html">Downtown</a>
+      </div>
+      <div>
+        <h4>Chamber</h4>
+        <a href="../BeaverDamChamberWeb/about-the-chamber/index.html">About</a>
+        <a href="../BeaverDamChamberWeb/about-the-chamber/mission-values/index.html">Mission</a>
+        <a href="../BeaverDamChamberWeb/leadership-and-ambassadors/index.html">Leadership</a>
+        <a href="../BeaverDamChamberWeb/contact/index.html">Contact</a>
+      </div>
+      <div>
+        <h4>Business</h4>
+        <a href="../BeaverDamChamberWeb/join-now-business/index.html">Join</a>
+        <a href="../BeaverDamChamberWeb/about-the-chamber/member-benefits/index.html">Benefits</a>
+        <a href="../BeaverDamChamberWeb/member-profile-updates/index.html">Member Login</a>
+        <a href="../BeaverDamChamberWeb/membership-renewal/index.html">Renew</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © Beaver Dam Chamber &amp; Visitor Center — with love, from a small town in Wisconsin.
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

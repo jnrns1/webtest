@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg xmlns="http://www.w3.org/2000/svg" width="416.169" height="237.95" viewBox="0 0 416.169 237.95">
-  <g transform="translate(-605.5 -1412.55)">
-    <path d="M676.119,1278.05V1501.7" transform="translate(345.05 134.5)" fill="none" stroke="#767676" stroke-width="1" stroke-dasharray="4 5"></path>
-    <ellipse cx="12.358" cy="13.5" rx="12.358" ry="13.5" transform="translate(605.5 1623.5)" fill="#d44a1e"></ellipse>
-    <line x2="389.52" transform="translate(630.675 1637)" fill="none" stroke="#767676" stroke-width="1" stroke-dasharray="5"></line>
-  </g>
-</svg>
